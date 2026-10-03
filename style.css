@@ -610,3 +610,26 @@ button{font-family:inherit}
 button:not(:disabled){cursor:pointer}
 button:not(:disabled):active{transform:translateY(1px) scale(.98)!important}
 button:disabled{cursor:not-allowed;opacity:.52}
+
+/* Final warm overrides for legacy selectors */
+.eyebrow,.temp-readout,.day-meta,.favorite-summary strong,.trend-label b,.compare-symbol,.series-range{color:var(--coral)!important}
+.lab-status-orbit{border-color:rgba(20,155,115,.20)!important;background:rgba(220,248,237,.45)!important}
+.orbit-dot{background:var(--emerald)!important;box-shadow:0 0 12px rgba(20,155,115,.34)!important}
+.cat-alkali-metal{background:linear-gradient(145deg,#fff0f0,#fffaf7)!important;border-color:#f4b2ba!important}
+.cat-alkaline-earth-metal{background:linear-gradient(145deg,#fff5dd,#fffaf7)!important;border-color:#f5d08b!important}
+.cat-transition-metal{background:linear-gradient(145deg,#f8e9f4,#fffaf7)!important;border-color:#ddb3d3!important}
+.cat-post-transition-metal{background:linear-gradient(145deg,#fff1d9,#fffaf7)!important;border-color:#e8c78d!important}
+.cat-metalloid{background:linear-gradient(145deg,#eee9ff,#fffaf7)!important;border-color:#c9bdf0!important}
+.cat-reactive-nonmetal{background:linear-gradient(145deg,#e5f8f0,#fffaf7)!important;border-color:#b0e5d2!important}
+.cat-noble-gas{background:linear-gradient(145deg,#f8e8f1,#fffaf7)!important;border-color:#e3b7cc!important}
+.cat-lanthanide{background:linear-gradient(145deg,#fff0e4,#fffaf7)!important;border-color:#eac3a5!important}
+.cat-actinide{background:linear-gradient(145deg,#f4e9df,#fffaf7)!important;border-color:#d8bda7!important}
+.trend-track i{background:linear-gradient(90deg,var(--coral),var(--amber),var(--plum))!important}
+.compare-arrow{color:var(--plum)!important}
+.duo-bar i{background:linear-gradient(90deg,transparent,var(--emerald))!important}
+.duo-bar em{background:linear-gradient(90deg,var(--plum),var(--coral))!important}
+.timeline-node{background:linear-gradient(135deg,var(--coral),var(--plum))!important}
+.quiz-option strong{color:var(--plum)!important}
+.quiz-option:hover:not(:disabled){border-color:rgba(228,91,104,.42)!important;background:var(--coral-soft)!important}
+.quiz-option.correct{border-color:#86d8b8!important;background:var(--emerald-soft)!important}
+.quiz-option.wrong{border-color:#efadb5!important;background:#fff0f1!important}
