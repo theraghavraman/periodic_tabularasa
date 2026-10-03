@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TabulaRasa — Cosmic Orange Chemistry Explorer</title>
+  <meta name="description" content="TabulaRasa is a cosmic-orange interactive chemistry explorer with all 118 elements, atomic visualizations, phase simulation, property trends, comparisons, chemistry challenges, and historical use-case context.">
+  <meta name="theme-color" content="#e96a1b">
+  
+  <!-- Atom Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='14' fill='%2300b4d8'/%3E%3Cellipse cx='50' cy='50' rx='42' ry='16' fill='none' stroke='%2300b4d8' stroke-width='3' transform='rotate(0 50 50)' opacity='0.8'/%3E%3Cellipse cx='50' cy='50' rx='42' ry='16' fill='none' stroke='%23b5179e' stroke-width='3' transform='rotate(60 50 50)' opacity='0.8'/%3E%3Cellipse cx='50' cy='50' rx='42' ry='16' fill='none' stroke='%23ff9f1c' stroke-width='3' transform='rotate(120 50 50)' opacity='0.8'/%3E%3C/svg%3E">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark cosmic-orange-theme">
+  <!-- Dynamic Ambient Background Lights -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Main App Container -->
+  <div class="app-container">
+    
+    <!-- Header with Glassmorphism Navigation -->
+    <header class="glass-header">
+      <div class="header-branding">
+        <div class="atom-logo">
+          <svg viewBox="0 0 100 100" class="rotating-atom">
+            <circle cx="50" cy="50" r="11" class="nucleus" />
+            <ellipse cx="50" cy="50" rx="38" ry="14" class="orbit orbit-1" />
+            <ellipse cx="50" cy="50" rx="38" ry="14" class="orbit orbit-2" />
+            <ellipse cx="50" cy="50" rx="38" ry="14" class="orbit orbit-3" />
+          </svg>
+        </div>
+        <div class="branding-text">
+          <h1>PERIODIC<span class="gradient-text">TABLE</span></h1>
+          <p class="subtitle">COSMIC CHEMISTRY LAB &bull; 118 Elements &bull; Properties &amp; Human Uses</p>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="header-actions">
+        <div class="search-box glass-pill">
+          <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Search element, symbol, atomic # (e.g. Au, Carbon, 79)..." autocomplete="off" spellcheck="false">
+          <button id="clearSearchBtn" class="clear-btn" title="Clear search" style="display: none;">&times;</button>
+        </div>
+
+        <button id="randomElementBtn" class="glass-btn action-btn" title="Discover a random element">
+          <span class="btn-icon">&#9858;</span>
+          <span class="btn-label">Random</span>
+        </button>
+
+        <button id="cosmicLabBtn" class="glass-btn action-btn" title="Jump to the Cosmic Chemistry Lab">
+          <span class="btn-icon">&#9733;</span>
+          <span class="btn-label">Lab</span>
+        </button>
+
+        <button id="soundToggleBtn" class="glass-btn icon-only-btn" title="Toggle audio feedback" aria-label="Toggle Sound">
+          <span id="soundIcon">&#128266;</span>
+        </button>
+
+        <button id="infoModalBtn" class="glass-btn icon-only-btn" title="About and Legend" aria-label="About Information">
+          <span>&#9432;</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Interactive Control Toolbar -->
+    <section class="toolbar-section glass-panel">
+      <!-- Category Filter Pills -->
+      <div class="filter-group">
+        <span class="toolbar-label">Categories:</span>
+        <div class="category-pills" id="categoryPills">
+          <button class="cat-pill active" data-category="all">
+            <span class="cat-dot all-dot"></span> All (118)
+          </button>
+          <button class="cat-pill" data-category="alkali-metal">
+            <span class="cat-dot cat-alkali"></span> Alkali Metal
+          </button>
+          <button class="cat-pill" data-category="alkaline-earth-metal">
+            <span class="cat-dot cat-alkaline"></span> Alkaline Earth
+          </button>
+          <button class="cat-pill" data-category="transition-metal">
+            <span class="cat-dot cat-transition"></span> Transition Metal
+          </button>
+          <button class="cat-pill" data-category="post-transition-metal">
+            <span class="cat-dot cat-post-transition"></span> Post-Transition
+          </button>
+          <button class="cat-pill" data-category="metalloid">
+            <span class="cat-dot cat-metalloid"></span> Metalloid
+          </button>
+          <button class="cat-pill" data-category="reactive-nonmetal">
+            <span class="cat-dot cat-nonmetal"></span> Reactive Nonmetal
+          </button>
+          <button class="cat-pill" data-category="noble-gas">
+            <span class="cat-dot cat-noble"></span> Noble Gas
+          </button>
+          <button class="cat-pill" data-category="lanthanide">
+            <span class="cat-dot cat-lanthanide"></span> Lanthanide
+          </button>
+          <button class="cat-pill" data-category="actinide">
+            <span class="cat-dot cat-actinide"></span> Actinide
+          </button>
+        </div>
+      </div>
+
+      <!-- Secondary Controls: Block, Heatmap Mode & Temperature Simulation -->
+      <div class="toolbar-subrow">
+        <!-- Electron Subshell Block Selector -->
+        <div class="subrow-item">
+          <span class="toolbar-label">Orbital Block:</span>
+          <div class="segmented-control" id="blockControl">
+            <button class="seg-btn active" data-block="all">All</button>
+            <button class="seg-btn" data-block="s">s-block</button>
+            <button class="seg-btn" data-block="p">p-block</button>
+            <button class="seg-btn" data-block="d">d-block</button>
+            <button class="seg-btn" data-block="f">f-block</button>
+          </div>
+        </div>
+
+        <!-- Color Mode / Heatmap Selector -->
+        <div class="subrow-item">
+          <span class="toolbar-label">Color Scheme:</span>
+          <select id="colorModeSelect" class="glass-select">
+            <option value="category">Category (Default)</option>
+            <option value="phase">Physical State</option>
+            <option value="electronegativity">Electronegativity</option>
+            <option value="density">Density</option>
+            <option value="melt">Melting Point</option>
+            <option value="boil">Boiling Point</option>
+            <option value="atomic_mass">Atomic Mass</option>
+          </select>
+        </div>
+
+        <!-- Interactive Temperature Slider -->
+        <div class="subrow-item temp-slider-container">
+          <div class="temp-header">
+            <span class="toolbar-label">Temperature:</span>
+            <span id="tempValueDisplay" class="temp-readout">298 K (25 °C)</span>
+          </div>
+          <div class="temp-controls">
+            <input type="range" id="tempSlider" min="0" max="6000" step="10" value="298" class="custom-range">
+            <div class="temp-presets">
+              <button class="temp-preset-btn" data-temp="0" title="Absolute Zero">0 K</button>
+              <button class="temp-preset-btn active" data-temp="298" title="Room Temperature">298 K</button>
+              <button class="temp-preset-btn" data-temp="373" title="Boiling Water">373 K</button>
+              <button class="temp-preset-btn" data-temp="1811" title="Iron Melting Point">1811 K</button>
+              <button class="temp-preset-btn" data-temp="5778" title="Sun's Surface">5778 K</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- State Legend Indicators -->
+        <div class="subrow-item state-legend">
+          <span class="toolbar-label">State:</span>
+          <div class="state-badges">
+            <span class="state-pill state-solid"><span class="state-dot solid-dot"></span> Solid (<span id="countSolid">0</span>)</span>
+            <span class="state-pill state-liquid"><span class="state-dot liquid-dot"></span> Liquid (<span id="countLiquid">0</span>)</span>
+            <span class="state-pill state-gas"><span class="state-dot gas-dot"></span> Gas (<span id="countGas">0</span>)</span>
+            <span class="state-pill state-unknown"><span class="state-dot unknown-dot"></span> Expected (<span id="countUnknown">0</span>)</span>
+          </div>
+        </div>
+      </div>
+      <div class="toolbar-quick-actions">
+        <button class="quick-chip" data-scroll-target="cosmicLab"><span>✦</span> Cosmic Chemistry Lab</button>
+        <button class="quick-chip" data-scroll-target="compareLab"><span>⚖</span> Compare Elements</button>
+        <button class="quick-chip" data-scroll-target="chemistryChallenge"><span>⌁</span> Chemistry Challenge</button>
+        <button class="quick-chip" data-scroll-target="useHistoryLab"><span>◉</span> Use-Case History</button>
+      </div>
+    </section>
+
+    <!-- Table Canvas & Grid Wrapper -->
+    <main class="table-wrapper">
+      <!-- Heatmap legend bar (shown when heatmap mode is active) -->
+      <div id="heatmapLegendBar" class="heatmap-legend glass-panel" style="display: none;">
+        <span class="heatmap-label" id="heatmapLowLabel">Min: 0</span>
+        <div class="heatmap-bar-gradient" id="heatmapGradient"></div>
+        <span class="heatmap-label" id="heatmapHighLabel">Max: 100</span>
+      </div>
+
+      <div class="periodic-grid-container" id="periodicTable">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </main>
+
+
+    <!-- Cosmic Chemistry Lab -->
+    <section class="cosmic-lab" id="cosmicLab" aria-label="Cosmic Chemistry Lab">
+      <div class="lab-intro glass-panel">
+        <div>
+          <span class="eyebrow">✦ COSMIC ORANGE CHEMISTRY LAB</span>
+          <h2>Explore the periodic table as a living chemistry map.</h2>
+          <p>Go beyond names and atomic numbers: compare measurable properties, trace how elements became useful, save favorites, and test what you know.</p>
+        </div>
+        <div class="lab-status-orbit"><span class="orbit-dot"></span><span>Interactive &amp; client-side</span></div>
+      </div>
+      <div class="lab-grid">
+        <article class="lab-card glass-panel day-card">
+          <div class="lab-card-heading"><span class="lab-icon">☀</span><div><span class="eyebrow">ELEMENT OF THE DAY</span><h3 id="elementOfDayName">Hydrogen</h3></div></div>
+          <div class="day-symbol-row"><div class="day-symbol" id="elementOfDaySymbol">H</div><div><div class="day-meta" id="elementOfDayMeta">Z = 1 · s-block · Gas</div><p id="elementOfDayBlurb">The daily selection rotates automatically.</p></div></div>
+          <button id="elementOfDayBtn" class="lab-action-btn">Inspect today's element →</button>
+        </article>
+        <article class="lab-card glass-panel favorite-card">
+          <div class="lab-card-heading"><span class="lab-icon">☆</span><div><span class="eyebrow">PERSONAL COLLECTION</span><h3>Saved Elements</h3></div></div>
+          <div class="favorite-summary"><strong id="favoriteCount">0</strong><span>elements saved in this browser</span></div>
+          <div id="favoriteList" class="favorite-list"><span class="muted-note">Click “Save” after selecting an element to build your collection.</span></div>
+          <button id="clearFavoritesBtn" class="lab-secondary-btn">Clear saved elements</button>
+        </article>
+        <article class="lab-card glass-panel trend-card" id="trendLab">
+          <div class="lab-card-heading"><span class="lab-icon">↗</span><div><span class="eyebrow">PROPERTY TREND EXPLORER</span><h3>Compare a chemistry property</h3></div></div>
+          <div class="trend-controls">
+            <label>Property<select id="trendPropertySelect" class="lab-select"><option value="atomic_mass">Atomic mass</option><option value="density">Density</option><option value="electronegativity">Electronegativity</option><option value="melt">Melting point</option><option value="boil">Boiling point</option></select></label>
+            <label>Period<select id="trendPeriodSelect" class="lab-select"><option value="all">All periods</option><option value="1">Period 1</option><option value="2">Period 2</option><option value="3">Period 3</option><option value="4">Period 4</option><option value="5">Period 5</option><option value="6">Period 6</option><option value="7">Period 7</option></select></label>
+          </div>
+          <div id="trendBars" class="trend-bars"></div>
+          <p id="trendCaption" class="muted-note">Top measurable values in the chosen slice.</p>
+        </article>
+        <article class="lab-card glass-panel compare-card" id="compareLab">
+          <div class="lab-card-heading"><span class="lab-icon">⚖</span><div><span class="eyebrow">PAIRWISE CHEMISTRY</span><h3>Compare two elements</h3></div></div>
+          <div class="compare-controls"><label>Element A<select id="compareA" class="lab-select"></select></label><span class="compare-vs">VS</span><label>Element B<select id="compareB" class="lab-select"></select></label></div>
+          <div id="comparePanel" class="compare-panel"></div>
+        </article>
+        <article class="lab-card glass-panel use-history-card" id="useHistoryLab">
+          <div class="lab-card-heading"><span class="lab-icon">◉</span><div><span class="eyebrow">HUMAN USE &amp; HISTORY</span><h3 id="useHistoryTitle">How an element became useful</h3></div></div>
+          <div class="history-selector-row"><select id="historyElementSelect" class="lab-select"></select><button id="historyInspectBtn" class="lab-secondary-btn">Open element</button></div>
+          <div id="useHistoryTimeline" class="use-history-timeline"></div>
+          <p class="muted-note">Historical notes are curated context built around the dataset’s discovery and use fields; use the linked element sources for deeper scholarly reading.</p>
+        </article>
+        <article class="lab-card glass-panel quiz-card" id="chemistryChallenge">
+          <div class="lab-card-heading"><span class="lab-icon">⌁</span><div><span class="eyebrow">CHEMISTRY CHALLENGE</span><h3>Test your periodic instincts</h3></div></div>
+          <div class="quiz-progress"><span id="quizProgress">Question 1 / 5</span><span id="quizScore">Score 0</span></div>
+          <h4 id="quizQuestion">Which element has atomic number 1?</h4><div id="quizOptions" class="quiz-options"></div>
+          <button id="quizNextBtn" class="lab-action-btn" disabled>Choose an answer first</button>
+          <div id="quizFeedback" class="quiz-feedback" aria-live="polite"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Footer with status & shortcuts -->
+    <footer class="glass-footer">
+      <div class="footer-info">
+        <span>Use <kbd>&larr;</kbd> <kbd>&rarr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd> to navigate, <kbd>Enter</kbd> to inspect, <kbd>Esc</kbd> to close.</span>
+      </div>
+      <div class="footer-credits">
+        <span>Hosted on <strong>GitHub Pages</strong> &bull; Crafted with Glassmorphism & Vanilla Web Standards</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Detail Modal / Inspector Drawer -->
+  <div class="modal-overlay" id="elementModal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-card glass-modal">
+      
+      <!-- Close & Quick Navigation Bar -->
+      <div class="modal-topbar">
+        <button id="prevElementBtn" class="nav-element-btn" title="Previous Element (Arrow Left)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span id="prevElementLabel">Prev</span>
+        </button>
+
+        <div class="modal-pill-info" id="modalCategoryBadge">
+          Transition Metal
+        </div>
+
+        <button id="nextElementBtn" class="nav-element-btn" title="Next Element (Arrow Right)">
+          <span id="nextElementLabel">Next</span>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <button id="closeModalBtn" class="close-modal-btn" title="Close (Esc)" aria-label="Close modal">
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal Body Content -->
+      <div class="modal-content-scroll">
+        <!-- Hero Section with Symbol Badge & Bohr Atom Simulation -->
+        <div class="modal-hero">
+          
+          <!-- Element Big Tile Visual -->
+          <div class="element-hero-badge" id="modalHeroBadge">
+            <div class="hero-atomic-num" id="modalHeroNumber">79</div>
+            <div class="hero-symbol" id="modalHeroSymbol">Au</div>
+            <div class="hero-name" id="modalHeroName">Gold</div>
+            <div class="hero-mass" id="modalHeroMass">196.97 u</div>
+            <div class="hero-config" id="modalHeroConfig">[Xe] 4f¹⁴ 5d¹⁰ 6s¹</div>
+          </div>
+
+          <!-- Interactive Bohr Atom Orbit Visualizer -->
+          <div class="bohr-visualizer-container glass-inset">
+            <div class="bohr-header">
+              <span class="bohr-title">&#9883; Bohr Electron Shell Model</span>
+              <span class="bohr-shells-info" id="bohrShellsLabel">K: 2 | L: 8 | M: 18...</span>
+            </div>
+            <canvas id="bohrCanvas" width="360" height="360"></canvas>
+            <div class="bohr-hint">Real-time electron orbits & energy levels</div>
+          </div>
+
+          <!-- Real World Photo Card -->
+          <div class="element-photo-card glass-inset">
+            <div class="photo-header">
+              <span class="photo-badge">&#128247; Real-World Specimen</span>
+              <a id="photoExternalLink" href="#" target="_blank" rel="noopener" class="photo-wiki-link" title="Open on Wikimedia Commons">&#10532;</a>
+            </div>
+            <div class="photo-image-container">
+              <div class="photo-loading-spinner" id="photoSpinner"></div>
+              <img id="modalElementPhoto" src="" alt="Real-world element photo" class="specimen-img">
+              <!-- Visual Fallback Artwork if image takes time or is offline -->
+              <div class="photo-fallback-graphic" id="photoFallback" style="display: none;">
+                <div class="fallback-glow-sphere" id="fallbackSphere"></div>
+                <span class="fallback-symbol" id="fallbackSymbol">Au</span>
+              </div>
+            </div>
+            <p class="photo-caption" id="modalPhotoCaption">Naturally formed native gold crystal cluster specimen.</p>
+          </div>
+        </div>
+
+        <!-- Summary & Appearance Quote -->
+        <div class="element-summary-box glass-panel">
+          <p class="element-summary-text" id="modalSummaryText"></p>
+          <div class="appearance-quote">
+            <strong>Appearance:</strong> <span id="modalAppearanceText"></span>
+          </div>
+        </div>
+
+        <!-- Tabbed Information Sections -->
+        <div class="modal-tabs">
+          <button class="modal-tab-btn active" data-tab="tab-overview">Overview & Uses</button>
+          <button class="modal-tab-btn" data-tab="tab-atomic">Atomic Properties</button>
+          <button class="modal-tab-btn" data-tab="tab-thermal">Thermal & Physical</button>
+          <button class="modal-tab-btn" data-tab="tab-history">History & Discovery</button>
+        </div>
+
+        <!-- Tab Panes -->
+        <div class="tab-panes-container">
+          
+          <!-- TAB 1: Overview & Uses -->
+          <div class="tab-pane active" id="tab-overview">
+            <div class="info-grid">
+              <div class="info-card glass-inset full-width">
+                <h4><span class="card-icon">&#9879;</span> Real-World Occurrences & Everyday Applications</h4>
+                <p id="modalUsesText" class="uses-content"></p>
+              </div>
+
+              <div class="info-card glass-inset">
+                <h4><span class="card-icon">&#9881;</span> Classification & Position</h4>
+                <div class="data-row">
+                  <span class="data-label">Periodic Group</span>
+                  <span class="data-value" id="modalGroup">Group 11 (Coinage metals)</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Period</span>
+                  <span class="data-value" id="modalPeriod">Period 6</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Orbital Block</span>
+                  <span class="data-value" id="modalBlock">d-block</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Chemical Category</span>
+                  <span class="data-value" id="modalCategory">Transition Metal</span>
+                </div>
+              </div>
+
+              <div class="info-card glass-inset">
+                <h4><span class="card-icon">&#9729;</span> Standard Thermodynamic State</h4>
+                <div class="data-row">
+                  <span class="data-label">Phase at 298 K (25 °C)</span>
+                  <span class="data-value" id="modalPhase">Solid</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Density (at s.t.p.)</span>
+                  <span class="data-value" id="modalDensity">19.30 g/cm³</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Melting Point</span>
+                  <span class="data-value" id="modalMeltBrief">1337.33 K (1064.18 °C)</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Boiling Point</span>
+                  <span class="data-value" id="modalBoilBrief">3129 K (2856 °C)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: Atomic Properties -->
+          <div class="tab-pane" id="tab-atomic">
+            <div class="info-grid">
+              <div class="info-card glass-inset">
+                <h4><span class="card-icon">&#9883;</span> Electron Configuration</h4>
+                <div class="data-row">
+                  <span class="data-label">Full Configuration</span>
+                  <span class="data-value mono" id="modalConfigFull">[Xe] 4f¹⁴ 5d¹⁰ 6s¹</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Electrons Per Shell</span>
+                  <span class="data-value mono" id="modalShellsList">2, 8, 18, 32, 18, 1</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Valence Electrons</span>
+                  <span class="data-value" id="modalValence">1</span>
+                </div>
+              </div>
+
+              <div class="info-card glass-inset">
+                <h4><span class="card-icon">&#9878;</span> Chemical & Nuclear Attributes</h4>
+                <div class="data-row">
+                  <span class="data-label">Electronegativity (Pauling)</span>
+                  <span class="data-value" id="modalElectronegativity">2.54</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Atomic Mass</span>
+                  <span class="data-value" id="modalAtomicWeight">196.966569 u</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Atomic Number (Z)</span>
+                  <span class="data-value" id="modalAtomicNumFull">79</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Neutrons (Most Abundant)</span>
+                  <span class="data-value" id="modalNeutrons">118</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: Thermal & Physical -->
+          <div class="tab-pane" id="tab-thermal">
+            <div class="info-grid">
+              <div class="info-card glass-inset">
+                <h4><span class="card-icon">&#128293;</span> Phase Transitions</h4>
+                <div class="data-row">
+                  <span class="data-label">Melting Point (Kelvin)</span>
+                  <span class="data-value" id="modalMeltK">1337.33 K</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Melting Point (Celsius)</span>
+                  <span class="data-value" id="modalMeltC">1064.18 °C</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Melting Point (Fahrenheit)</span>
+                  <span class="data-value" id="modalMeltF">1947.52 °F</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Boiling Point (Kelvin)</span>
+                  <span class="data-value" id="modalBoilK">3129 K</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Boiling Point (Celsius)</span>
+                  <span class="data-value" id="modalBoilC">2856 °C</span>
+                </div>
+              </div>
+
+              <div class="info-card glass-inset">
+                <h4><span class="card-icon">&#128300;</span> Physical Characteristics</h4>
+                <div class="data-row">
+                  <span class="data-label">Standard Density</span>
+                  <span class="data-value" id="modalDensityFull">19.30 g/cm³</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">State at Current Slider Temp</span>
+                  <span class="data-value highlight" id="modalCurrentState">Solid</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Periodicity Block</span>
+                  <span class="data-value" id="modalBlockFull">d (Transition Metal)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: History & Discovery -->
+          <div class="tab-pane" id="tab-history">
+            <div class="info-grid">
+              <div class="info-card glass-inset full-width">
+                <h4><span class="card-icon">&#128220;</span> Discovery and Etymology</h4>
+                <div class="data-row">
+                  <span class="data-label">Discovered By</span>
+                  <span class="data-value bold" id="modalDiscoverer">Middle East civilizations</span>
+                </div>
+                <div class="data-row">
+                  <span class="data-label">Year Discovered</span>
+                  <span class="data-value bold" id="modalYear">Prehistoric (~4000 BC)</span>
+                </div>
+                <div class="history-description-block" id="modalHistoryDetail">
+                  <p>Gold has been known and utilized by humankind since ancient antiquity. Its resistance to tarnishing and radiant yellow shine made it the global symbol of royalty, wealth, and permanence across Egyptian, Mesopotamian, Indus Valley, and Mesoamerican cultures.</p>
+                </div>
+                <div class="wiki-external-container">
+                  <a id="modalWikipediaLink" href="https://en.wikipedia.org/wiki/Gold" target="_blank" rel="noopener" class="glass-btn action-btn wiki-btn">
+                    <span>Read Complete Scientific Monograph on Wikipedia</span> &#10532;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About / Help Modal -->
+  <div class="modal-overlay" id="infoModal" aria-hidden="true">
+    <div class="modal-backdrop" id="infoModalBackdrop"></div>
+    <div class="modal-card glass-modal info-dialog">
+      <div class="modal-topbar">
+        <h3>About This Periodic Table</h3>
+        <button id="closeInfoModalBtn" class="close-modal-btn">&times;</button>
+      </div>
+      <div class="modal-content-scroll info-body">
+        <p>This web application is a state-of-the-art interactive periodic table of chemical elements designed with a <strong>modern glassmorphism aesthetic</strong>, smooth transitions, and comprehensive scientific data for all 118 elements.</p>
+        
+        <h4>Key Features</h4>
+        <ul>
+          <li><strong>All 118 Elements:</strong> Every element from Hydrogen (1) to Oganesson (118) with accurate IUPAC data.</li>
+          <li><strong>Interactive Bohr Atom Simulator:</strong> Real-time animated canvas modeling actual electron shell distributions.</li>
+          <li><strong>Real-World Specimens:</strong> High-resolution real-world photos and authentic specimens from Wikimedia Commons with dynamic visual fallbacks.</li>
+          <li><strong>Temperature Simulation Slider:</strong> Dynamically change temperature from 0 K to 6000 K to observe state changes (solid &rarr; liquid &rarr; gas).</li>
+          <li><strong>Property Heatmaps:</strong> Color code the table by electronegativity, density, melting/boiling points, or atomic mass.</li>
+          <li><strong>Instant Search & Filter:</strong> Filter by category, block (s, p, d, f), or search by name, symbol, or atomic number.</li>
+          <li><strong>Keyboard Navigation:</strong> Navigate tiles with arrow keys, press Enter to view details, and press Esc to close.</li>
+          <li><strong>Cosmic Chemistry Lab:</strong> Compare elements, explore property trends, save favorites locally, follow historical use-case context, and play a data-driven chemistry challenge.</li>
+          <li><strong>GitHub Pages Ready:</strong> Built purely with standard client-side technologies (zero build steps, pure static HTML/CSS/JS).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Data and Main Script -->
+  <script src="elements-data.js"></script>
+  <script src="app.js"></script>
+  <script src="cosmic-features.js"></script>
+</body>
+</html>
