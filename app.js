@@ -1,4 +1,4 @@
-/**
+/*
  * Periodic Table of Elements — Interactive Application
  * Implements interactive grid, glassmorphism UI, search, category filters,
  * temperature state simulator, property heatmaps, Bohr atom canvas visualizer,
