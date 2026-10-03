@@ -633,3 +633,314 @@ button:disabled{cursor:not-allowed;opacity:.52}
 .quiz-option:hover:not(:disabled){border-color:rgba(228,91,104,.42)!important;background:var(--coral-soft)!important}
 .quiz-option.correct{border-color:#86d8b8!important;background:var(--emerald-soft)!important}
 .quiz-option.wrong{border-color:#efadb5!important;background:#fff0f1!important}
+
+
+/* ================================================================
+   FINAL ART DIRECTION — "PRISMATIC REACTOR"
+   A deliberately bold editorial chemistry interface.
+   Ivory canvas + coral / saffron / orchid / emerald chemistry signals.
+   ================================================================ */
+:root{
+  --reactor-paper:#fffaf2;
+  --reactor-white:rgba(255,255,255,.78);
+  --reactor-ink:#422d2d;
+  --reactor-coral:#e65767;
+  --reactor-saffron:#f4a51c;
+  --reactor-orchid:#a44b91;
+  --reactor-violet:#7456c7;
+  --reactor-emerald:#119b73;
+  --reactor-peach:#ffdcd2;
+  --reactor-lilac:#eadcf4;
+  --reactor-mint:#d9f3e7;
+  --reactor-line:rgba(116,76,67,.17);
+  --reactor-shadow:0 30px 80px rgba(101,57,43,.13),0 8px 24px rgba(101,57,43,.07);
+}
+
+/* Canvas */
+body.cosmic-white-theme{
+  min-height:100vh;
+  color:var(--reactor-ink)!important;
+  background:
+    radial-gradient(900px 500px at -8% -8%,rgba(244,165,28,.19),transparent 62%),
+    radial-gradient(760px 520px at 108% 8%,rgba(230,87,103,.18),transparent 64%),
+    radial-gradient(700px 520px at 5% 100%,rgba(17,155,115,.12),transparent 63%),
+    radial-gradient(700px 560px at 100% 92%,rgba(164,75,145,.13),transparent 64%),
+    var(--reactor-paper)!important;
+  overflow-x:hidden;
+}
+body.cosmic-white-theme:after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  opacity:.55;
+  background:
+    radial-gradient(circle at 14% 18%,rgba(230,87,103,.32) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 78% 24%,rgba(244,165,28,.28) 0 1.1px,transparent 1.8px),
+    radial-gradient(circle at 31% 76%,rgba(17,155,115,.25) 0 1px,transparent 1.7px),
+    radial-gradient(circle at 91% 72%,rgba(164,75,145,.25) 0 1px,transparent 1.7px);
+  background-size:113px 149px,177px 191px,211px 233px,149px 173px;
+  animation:reactorDust 24s linear infinite;
+}
+@keyframes reactorDust{to{background-position:113px 149px,-177px 191px,211px -233px,-149px 173px}}
+
+/* Floating glass shell */
+.glass-header,.toolbar-section,.periodic-grid-container,.lab-intro,.lab-card,.glass-footer,
+.glass-panel,.glass-inset,.glass-modal,.info-card,.intelligence-card{
+  background:linear-gradient(135deg,rgba(255,255,255,.84),rgba(255,247,236,.57))!important;
+  border:1px solid rgba(255,255,255,.92)!important;
+  box-shadow:var(--reactor-shadow),inset 0 1px rgba(255,255,255,.98)!important;
+  backdrop-filter:blur(24px) saturate(145%)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(145%)!important;
+}
+.glass-header{
+  transform:translateZ(0);
+  border-radius:24px!important;
+  box-shadow:0 28px 75px rgba(101,57,43,.13),inset 0 1px #fff!important;
+  overflow:hidden;
+}
+.glass-header:after{
+  content:"";position:absolute;inset:-40% -20%;
+  background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.72) 48%,transparent 61%);
+  transform:translateX(-80%) rotate(4deg);
+  animation:glassSweep 8s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes glassSweep{0%,52%{transform:translateX(-80%) rotate(4deg)}78%,100%{transform:translateX(80%) rotate(4deg)}}
+
+/* Branding becomes a chemistry magazine masthead */
+.header-branding .branding-text h1{
+  letter-spacing:-.045em!important;
+  font-size:clamp(1.45rem,3vw,2.2rem)!important;
+  color:var(--reactor-ink)!important;
+}
+.gradient-text{
+  background:linear-gradient(100deg,var(--reactor-coral),var(--reactor-saffron) 32%,var(--reactor-emerald) 62%,var(--reactor-orchid))!important;
+  -webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;
+  background-size:240% auto!important;animation:gradientDrift 7s ease-in-out infinite alternate!important;
+}
+@keyframes gradientDrift{to{background-position:100% 50%}}
+
+/* Header controls */
+.search-box{
+  background:rgba(255,252,247,.72)!important;
+  border:1px solid rgba(230,87,103,.18)!important;
+  border-radius:18px!important;
+  box-shadow:inset 0 1px #fff,0 12px 28px rgba(101,57,43,.07)!important;
+}
+.search-box:focus-within{
+  border-color:rgba(230,87,103,.52)!important;
+  box-shadow:0 0 0 5px rgba(230,87,103,.07),0 16px 35px rgba(101,57,43,.11)!important;
+}
+.search-box input{color:var(--reactor-ink)!important}
+.glass-btn,.quick-chip,.temp-preset-btn,.seg-btn,.cat-pill,.lab-secondary-btn,.modal-tab-btn,.nav-element-btn,.close-modal-btn{
+  position:relative;overflow:hidden;
+  color:var(--reactor-ink)!important;
+  background:rgba(255,253,249,.66)!important;
+  border:1px solid rgba(116,76,67,.16)!important;
+  border-radius:12px!important;
+  box-shadow:0 8px 22px rgba(101,57,43,.06),inset 0 1px #fff!important;
+  transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s,border-color .22s,color .22s!important;
+}
+.glass-btn:before,.quick-chip:before,.cat-pill:before{
+  content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.8) 50%,transparent 65%);
+  transform:translateX(-140%);transition:transform .55s ease;pointer-events:none;
+}
+.glass-btn:hover:before,.quick-chip:hover:before,.cat-pill:hover:before{transform:translateX(140%)}
+.glass-btn:hover,.quick-chip:hover,.temp-preset-btn:hover,.seg-btn:hover,.lab-secondary-btn:hover,.modal-tab-btn:hover,.nav-element-btn:hover{
+  transform:translateY(-3px)!important;
+  color:var(--reactor-coral)!important;
+  border-color:rgba(230,87,103,.38)!important;
+  box-shadow:0 16px 32px rgba(101,57,43,.11),0 0 0 3px rgba(230,87,103,.05),inset 0 1px #fff!important;
+}
+
+/* Chemistry category controls — intentionally multicolor */
+.cat-pill{padding:8px 11px!important}
+.cat-pill[data-category="all"]{--chem:#b36b28}
+.cat-pill[data-category="alkali-metal"]{--chem:#db4f62}
+.cat-pill[data-category="alkaline-earth-metal"]{--chem:#d88a17}
+.cat-pill[data-category="transition-metal"]{--chem:#a44b91}
+.cat-pill[data-category="post-transition-metal"]{--chem:#9b671f}
+.cat-pill[data-category="metalloid"]{--chem:#7456c7}
+.cat-pill[data-category="reactive-nonmetal"]{--chem:#119b73}
+.cat-pill[data-category="noble-gas"]{--chem:#bd4d88}
+.cat-pill[data-category="lanthanide"]{--chem:#c56d32}
+.cat-pill[data-category="actinide"]{--chem:#895b3f}
+.cat-pill.active{
+  color:var(--chem)!important;
+  border-color:color-mix(in srgb,var(--chem) 48%,white)!important;
+  background:color-mix(in srgb,var(--chem) 10%,white)!important;
+  box-shadow:0 12px 30px color-mix(in srgb,var(--chem) 15%,transparent),inset 0 1px #fff!important;
+  transform:translateY(-3px) scale(1.035)!important;
+}
+.cat-pill .cat-dot{background:var(--chem)!important;box-shadow:0 0 12px color-mix(in srgb,var(--chem) 45%,transparent)!important}
+
+/* Block selector = segmented reactor */
+.seg-btn.active{
+  color:#fff!important;border-color:transparent!important;
+  background:linear-gradient(120deg,var(--reactor-coral),var(--reactor-orchid))!important;
+  box-shadow:0 13px 28px rgba(164,75,145,.22)!important;
+  transform:translateY(-2px)!important;
+}
+.glass-select,.lab-select{
+  color:var(--reactor-ink)!important;
+  background:rgba(255,252,247,.86)!important;
+  border-color:rgba(116,76,67,.18)!important;
+}
+.temp-readout{color:var(--reactor-coral)!important}
+.custom-range{accent-color:var(--reactor-coral)!important}
+
+/* Periodic table — floating specimens */
+.table-wrapper{position:relative}
+.periodic-grid-container{
+  position:relative;
+  border-radius:28px!important;
+  padding:14px!important;
+  gap:6px!important;
+  background:
+    linear-gradient(rgba(255,255,255,.53),rgba(255,248,239,.48)),
+    radial-gradient(circle at 14% 20%,rgba(244,165,28,.09),transparent 23%),
+    radial-gradient(circle at 84% 25%,rgba(230,87,103,.08),transparent 23%),
+    radial-gradient(circle at 48% 88%,rgba(17,155,115,.08),transparent 26%)!important;
+  box-shadow:0 35px 100px rgba(101,57,43,.15),inset 0 1px #fff!important;
+}
+.periodic-grid-container:before{
+  content:"";position:absolute;inset:9px;border:1px dashed rgba(164,75,145,.13);
+  border-radius:22px;pointer-events:none;
+}
+.element-tile{
+  background:linear-gradient(145deg,rgba(255,255,255,.91),rgba(255,247,238,.61))!important;
+  border:1px solid rgba(116,76,67,.16)!important;
+  border-radius:13px!important;
+  box-shadow:0 8px 17px rgba(101,57,43,.07),inset 0 1px #fff!important;
+  transform:translateZ(0);
+  transition:transform .24s cubic-bezier(.18,.88,.22,1),box-shadow .24s,border-color .24s,opacity .24s,filter .24s!important;
+}
+.element-tile:after{
+  content:"";position:absolute;left:-40%;top:-20%;width:60%;height:160%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.65),transparent);
+  transform:rotate(18deg) translateX(-160%);
+  transition:transform .55s ease;pointer-events:none;
+}
+.element-tile:hover:after{transform:rotate(18deg) translateX(400%)}
+.element-tile:hover,.element-tile:focus-visible{
+  transform:translateY(-8px) scale(1.075) rotateX(2deg)!important;
+  z-index:12!important;
+  border-color:rgba(230,87,103,.48)!important;
+  box-shadow:0 25px 48px rgba(101,57,43,.16),0 0 0 4px rgba(230,87,103,.06),inset 0 1px #fff!important;
+}
+.element-tile.element-selected{
+  animation:reactorPop .9s cubic-bezier(.15,.9,.25,1)!important;
+  border-color:var(--reactor-coral)!important;
+  z-index:20!important;
+  box-shadow:
+    0 0 0 7px rgba(230,87,103,.11),
+    0 0 48px rgba(230,87,103,.34),
+    0 28px 55px rgba(164,75,145,.20),
+    inset 0 1px #fff!important;
+}
+@keyframes reactorPop{
+  0%{transform:scale(1)}
+  18%{transform:scale(1.28) rotate(-2deg)}
+  42%{transform:scale(.96) rotate(1.2deg)}
+  68%{transform:scale(1.11)}
+  100%{transform:scale(1)}
+}
+.element-tile.highlighted{
+  outline:3px solid rgba(230,87,103,.40)!important;
+  box-shadow:0 0 0 6px rgba(230,87,103,.07),0 15px 32px rgba(101,57,43,.10)!important;
+}
+.element-tile.dimmed{opacity:.08!important;filter:grayscale(.7)!important}
+.element-tile[hidden],.series-placeholder-tile[hidden]{display:none!important}
+
+/* Family-specific specimen tint */
+.element-tile.cat-alkali-metal{background:linear-gradient(145deg,#fff0f0,#fffaf7)!important;border-color:#f1b0ba!important}
+.element-tile.cat-alkaline-earth-metal{background:linear-gradient(145deg,#fff3d8,#fffaf7)!important;border-color:#f0cb84!important}
+.element-tile.cat-transition-metal{background:linear-gradient(145deg,#f9eaf5,#fffaf7)!important;border-color:#ddb4d2!important}
+.element-tile.cat-post-transition-metal{background:linear-gradient(145deg,#fff0da,#fffaf7)!important;border-color:#e6c58d!important}
+.element-tile.cat-metalloid{background:linear-gradient(145deg,#eee9ff,#fffaf7)!important;border-color:#c8bcec!important}
+.element-tile.cat-reactive-nonmetal{background:linear-gradient(145deg,#e4f8ef,#fffaf7)!important;border-color:#a9dfca!important}
+.element-tile.cat-noble-gas{background:linear-gradient(145deg,#f8e6f1,#fffaf7)!important;border-color:#e0b1ca!important}
+.element-tile.cat-lanthanide{background:linear-gradient(145deg,#fff0e2,#fffaf7)!important;border-color:#e8c09d!important}
+.element-tile.cat-actinide{background:linear-gradient(145deg,#f3e8de,#fffaf7)!important;border-color:#d5b8a0!important}
+
+/* Labs feel like floating instrument panels */
+.lab-intro,.lab-card{border-radius:22px!important}
+.lab-intro{position:relative;overflow:hidden}
+.lab-intro:after{
+  content:"CHEMISTRY / 118";position:absolute;right:22px;bottom:14px;
+  color:rgba(164,75,145,.10);font:900 clamp(1.2rem,4vw,3rem)/1 var(--font-mono);
+  letter-spacing:.08em;transform:rotate(-8deg);pointer-events:none;
+}
+.lab-card{transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,border-color .28s!important}
+.lab-card:hover{transform:translateY(-7px) rotate(.15deg)!important;border-color:rgba(230,87,103,.26)!important;box-shadow:0 30px 65px rgba(101,57,43,.14),inset 0 1px #fff!important}
+.lab-icon{background:linear-gradient(135deg,var(--reactor-coral),var(--reactor-saffron),var(--reactor-orchid))!important;box-shadow:0 10px 24px rgba(164,75,145,.18)!important}
+.day-symbol{background:linear-gradient(145deg,#fff0d5,#ffe1e5 52%,#f0e1f0)!important;color:var(--reactor-coral)!important;box-shadow:0 18px 36px rgba(101,57,43,.12)!important}
+.lab-action-btn{
+  background:linear-gradient(105deg,var(--reactor-coral),var(--reactor-saffron),var(--reactor-emerald),var(--reactor-orchid),var(--reactor-coral))!important;
+  background-size:300% 100%!important;
+  animation:buttonFlow 7s linear infinite!important;
+  box-shadow:0 15px 35px rgba(164,75,145,.20)!important;
+}
+@keyframes buttonFlow{to{background-position:300% 0}}
+.favorite-summary strong{color:var(--reactor-coral)!important}
+.trend-track i{background:linear-gradient(90deg,var(--reactor-coral),var(--reactor-saffron),var(--reactor-orchid))!important}
+.compare-symbol{color:var(--reactor-orchid)!important}
+.duo-bar i{background:linear-gradient(90deg,transparent,var(--reactor-emerald))!important}
+.duo-bar em{background:linear-gradient(90deg,var(--reactor-orchid),var(--reactor-coral))!important}
+.timeline-node{background:linear-gradient(135deg,var(--reactor-coral),var(--reactor-orchid))!important}
+.quiz-option strong{color:var(--reactor-orchid)!important}
+
+/* Intelligence = reactor core */
+.intelligence-card{
+  position:relative;overflow:hidden;
+  border-radius:22px!important;
+  border-color:rgba(164,75,145,.23)!important;
+  background:
+    radial-gradient(circle at 90% 5%,rgba(244,165,28,.12),transparent 28%),
+    radial-gradient(circle at 4% 95%,rgba(17,155,115,.09),transparent 30%),
+    rgba(255,255,255,.76)!important;
+}
+.intelligence-card:before{
+  content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-100px;top:-120px;
+  border:1px solid rgba(230,87,103,.20);
+  box-shadow:0 0 0 22px rgba(164,75,145,.035),0 0 0 45px rgba(244,165,28,.025);
+  animation:coreOrbit 9s linear infinite;pointer-events:none;
+}
+@keyframes coreOrbit{to{transform:rotate(360deg)}}
+.intel-kicker{color:var(--reactor-orchid)!important}
+.intel-confidence{background:var(--reactor-mint)!important;color:#087453!important;border-color:rgba(17,155,115,.22)!important}
+.intel-shell-bar{background:linear-gradient(180deg,var(--reactor-saffron),var(--reactor-coral),var(--reactor-orchid))!important}
+.intel-callout{border-left-color:var(--reactor-coral)!important;background:linear-gradient(90deg,rgba(255,220,210,.70),rgba(255,255,255,.65))!important}
+.intel-link:hover{color:var(--reactor-orchid)!important}
+
+/* Modal = specimen chamber */
+.modal-backdrop{background:rgba(92,57,47,.20)!important;backdrop-filter:blur(15px)!important}
+.modal-card{
+  background:rgba(255,251,245,.79)!important;
+  border-radius:26px!important;
+  box-shadow:0 45px 120px rgba(92,57,47,.27),0 0 100px rgba(230,87,103,.10),inset 0 1px #fff!important;
+}
+.modal-topbar{background:rgba(255,250,244,.70)!important}
+.modal-tab-btn.active{
+  color:var(--reactor-orchid)!important;
+  background:linear-gradient(135deg,#ffe2e1,#fff0d4,#f1e1f0)!important;
+  border-color:rgba(164,75,145,.30)!important;
+  box-shadow:0 10px 24px rgba(164,75,145,.12)!important;
+}
+.hero-symbol{color:var(--reactor-coral)!important;text-shadow:0 0 28px rgba(230,87,103,.22)!important}
+.card-icon{color:var(--reactor-coral)!important}
+.data-value.highlight{color:var(--reactor-emerald)!important}
+
+/* Search/filter feedback */
+.filter-active-pulse{animation:filterPulse .55s ease-out}
+@keyframes filterPulse{0%{box-shadow:0 0 0 0 rgba(230,87,103,.24)}100%{box-shadow:0 0 0 13px rgba(230,87,103,0)}}
+
+/* Mobile: preserve the drama without breaking the table */
+@media(max-width:760px){
+  .glass-header,.toolbar-section,.periodic-grid-container{border-radius:18px!important}
+  .periodic-grid-container{padding:8px!important}
+  .element-tile:hover,.element-tile:focus-visible{transform:translateY(-4px) scale(1.035)!important}
+  .lab-intro:after{font-size:1.1rem;right:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  body.cosmic-white-theme:after,.gradient-text,.glass-header:after,.lab-action-btn,.intelligence-card:before{animation:none!important}
+  .element-tile,.lab-card,.glass-btn,.quick-chip{transition:none!important}
+}
