@@ -15,8 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=20261003-4">
-  <link rel="stylesheet" href="universal-chemistry-lab.css?v=20261003-1">
+  <link rel="stylesheet" href="style.css?v=20261003-5">
+  <link rel="stylesheet" href="universal-chemistry-lab.css?v=20261003-2">
 </head>
 <body class="theme-light cosmic-white-theme">
   <!-- Dynamic Ambient Background Lights -->
@@ -548,11 +548,21 @@
     </div>
   </div>
 
+
+  <!-- UNIVERSAL CHEMISTRY LAB ENTRY -->
+  <section id="chemistryLabEntry" style="max-width:1500px;margin:32px auto;padding:26px 18px;border-radius:28px;background:linear-gradient(135deg,#fff8ed,#f8eff8);border:1px solid rgba(164,75,145,.2);box-shadow:0 20px 55px rgba(101,57,43,.1);position:relative;overflow:hidden">
+    <div style="position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap">
+      <div><small style="font:800 .68rem var(--font-mono);letter-spacing:.15em;color:#a44b91">⚗ UNIVERSAL CHEMISTRY LAB · NEW</small><h2 style="margin:8px 0;font-size:clamp(1.7rem,4vw,3rem);background:linear-gradient(100deg,#df566a,#a44b91,#e99d20);-webkit-background-clip:text;color:transparent">From Curious Kid to Scientist</h2><p style="margin:0;color:#665b58;max-width:760px">Explore atoms, bonding, heat, isotopes, spectra, nuclear chemistry, real-world materials, learning challenges and calculations.</p></div>
+      <button id="openUniversalLab" style="border:0;border-radius:999px;padding:14px 20px;background:linear-gradient(100deg,#df566a,#e9a12a,#55ad88,#a44b91);color:white;font-weight:900;cursor:pointer;box-shadow:0 12px 30px rgba(164,75,145,.2)">OPEN CHEMISTRY LAB →</button>
+    </div>
+  </section>
+
   <!-- Load Data and Main Script -->
   <script src="elements-data.js?v=20261003-3"></script>
   <script src="app.js?v=20261003-3"></script>
   <script src="cosmic-features.js?v=20261003-3"></script>
   <script src="elemental-intelligence.js?v=20261003-3"></script>
-  <script src="universal-chemistry-lab.js?v=20261003-1"></script>
+  <script src="universal-chemistry-lab.js?v=20261003-2"></script>
+<script>document.getElementById("openUniversalLab")?.addEventListener("click",()=>document.getElementById("trLab")?.scrollIntoView({behavior:"smooth",block:"start"}));</script>
 </body>
 </html>
