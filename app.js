@@ -490,6 +490,17 @@
     });
   }
 
+  function updateSeriesPlaceholders() {
+    const narrowed = state.activeCategory !== 'all' || state.activeBlock !== 'all' || Boolean(state.searchQuery.trim());
+    document.querySelectorAll('.series-placeholder-tile').forEach(tile => {
+      const category = tile.classList.contains('placeholder-lanthanide') ? 'lanthanide' : 'actinide';
+      const categoryMatch = state.activeCategory === 'all' || state.activeCategory === category;
+      const show = !narrowed || (categoryMatch && state.activeBlock === 'all' && !state.searchQuery.trim());
+      tile.hidden = !show;
+      tile.setAttribute('aria-hidden', show ? 'false' : 'true');
+    });
+  }
+
   // Set Category Filter
   function setCategoryFilter(cat) {
     state.activeCategory = cat;
@@ -747,6 +758,7 @@
       state.searchQuery = e.target.value;
       clearSearchBtn.style.display = state.searchQuery ? 'block' : 'none';
       applyFilters();
+      updateSeriesPlaceholders();
     });
 
     clearSearchBtn.addEventListener('click', () => {
@@ -754,6 +766,7 @@
       state.searchQuery = '';
       clearSearchBtn.style.display = 'none';
       applyFilters();
+      updateSeriesPlaceholders();
       searchInput.focus();
     });
 
@@ -810,6 +823,7 @@
       btn.classList.add('active');
       state.activeBlock = btn.dataset.block;
       applyFilters();
+      updateSeriesPlaceholders();
     });
 
     // Color Mode / Heatmap Selector
