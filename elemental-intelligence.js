@@ -90,3 +90,18 @@
     }
   });
 })();
+
+/* Motion interaction: selected element gets a physical "pop" in the table. */
+(function(){
+  'use strict';
+  function selectTile(el){
+    document.querySelectorAll('.element-tile.element-selected').forEach(t=>t.classList.remove('element-selected'));
+    const tile=document.querySelector('.element-tile[data-number="'+Number(el?.number)+'"]');
+    if(!tile) return;
+    tile.classList.remove('element-selected');
+    void tile.offsetWidth;
+    tile.classList.add('element-selected');
+    window.setTimeout(()=>tile.classList.remove('element-selected'),900);
+  }
+  window.addEventListener('periodic-element-selected',e=>selectTile(e.detail));
+})();
