@@ -472,23 +472,21 @@
           el.symbol.toLowerCase() === query ||
           el.symbol.toLowerCase().startsWith(query) ||
           el.number.toString() === query ||
-          el.category.toLowerCase().includes(query) ||
-          el.discovered_by.toLowerCase().includes(query)
+          String(el.category ?? '').toLowerCase().includes(query) ||
+          String(el.discovered_by ?? '').toLowerCase().includes(query)
         );
       }
 
       const isVisible = matchCategory && matchBlock && matchSearch;
-      if (isVisible) {
-        tile.classList.remove('dimmed');
-        if (query && matchSearch) {
-          tile.classList.add('highlighted');
-        } else {
-          tile.classList.remove('highlighted');
-        }
-      } else {
-        tile.classList.add('dimmed');
-        tile.classList.remove('highlighted');
-      }
+
+      // Filtering must actually remove non-matching tiles from the visual grid.
+      // Previously these tiles were only dimmed, which made the filters appear broken.
+      tile.hidden = !isVisible;
+      tile.classList.toggle('dimmed', !isVisible);
+      tile.classList.toggle('highlighted', Boolean(query && isVisible));
+
+      // Keep accessibility state in sync with the visual filter.
+      tile.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
     });
   }
 
@@ -503,6 +501,7 @@
       }
     });
     applyFilters();
+    updateSeriesPlaceholders();
   }
 
   // Open Modal with Element Details
