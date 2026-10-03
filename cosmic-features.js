@@ -1,4 +1,4 @@
-/**
+/*
  * Cosmic Chemistry Lab — dependency-free extension layer.
  */
 (function(){
