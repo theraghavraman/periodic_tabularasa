@@ -328,23 +328,23 @@
     tile.style.borderColor = '';
     tile.style.color = '';
     if (phase === 'Solid') {
-      tile.style.color = '#94a3b8';
-      tile.style.background = 'rgba(148, 163, 184, 0.15)';
-      tile.style.borderColor = 'rgba(148, 163, 184, 0.35)';
+      tile.style.color = '#7c6f64';
+      tile.style.background = 'rgba(124, 111, 100, 0.12)';
+      tile.style.borderColor = 'rgba(124, 111, 100, 0.30)';
     } else if (phase === 'Liquid') {
-      tile.style.color = '#38bdf8';
-      tile.style.background = 'rgba(56, 189, 248, 0.22)';
-      tile.style.borderColor = 'rgba(56, 189, 248, 0.5)';
-      tile.style.boxShadow = '0 0 15px rgba(56, 189, 248, 0.3)';
+      tile.style.color = '#0f9f76';
+      tile.style.background = 'rgba(16, 185, 129, 0.18)';
+      tile.style.borderColor = 'rgba(16, 185, 129, 0.48)';
+      tile.style.boxShadow = '0 0 18px rgba(16, 185, 129, 0.24)';
     } else if (phase === 'Gas') {
-      tile.style.color = '#f43f5e';
-      tile.style.background = 'rgba(244, 63, 94, 0.22)';
-      tile.style.borderColor = 'rgba(244, 63, 94, 0.5)';
-      tile.style.boxShadow = '0 0 15px rgba(244, 63, 94, 0.3)';
+      tile.style.color = '#e05263';
+      tile.style.background = 'rgba(224, 82, 99, 0.18)';
+      tile.style.borderColor = 'rgba(224, 82, 99, 0.48)';
+      tile.style.boxShadow = '0 0 18px rgba(224, 82, 99, 0.24)';
     } else {
-      tile.style.color = '#64748b';
-      tile.style.background = 'rgba(100, 116, 139, 0.1)';
-      tile.style.borderColor = 'rgba(100, 116, 139, 0.25)';
+      tile.style.color = '#806f67';
+      tile.style.background = 'rgba(128, 111, 103, 0.09)';
+      tile.style.borderColor = 'rgba(128, 111, 103, 0.22)';
     }
   }
 
@@ -418,9 +418,9 @@
       const val = el ? el[mode] : null;
 
       if (val === null || val === undefined || isNaN(val)) {
-        tile.style.background = 'rgba(30, 41, 59, 0.4)';
-        tile.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-        tile.style.color = '#64748b';
+        tile.style.background = 'rgba(108, 83, 72, 0.10)';
+        tile.style.borderColor = 'rgba(108, 83, 72, 0.18)';
+        tile.style.color = '#806f67';
       } else {
         const ratio = Math.max(0, Math.min(1, (val - min) / (max - min || 1)));
         const color = getHeatmapColor(ratio);
@@ -435,11 +435,11 @@
   // Calculate RGB along heatmap gradient
   function getHeatmapColor(ratio) {
     const stops = [
-      { r: 59, g: 130, b: 246 },  // 0.0 Blue
-      { r: 6, g: 182, b: 212 },   // 0.25 Cyan
-      { r: 16, g: 185, b: 129 },  // 0.5 Green
-      { r: 245, g: 158, b: 11 },  // 0.75 Amber
-      { r: 239, g: 68, b: 68 }    // 1.0 Red
+      { r: 229, g: 90, b: 100 },   // coral
+      { r: 245, g: 158, b: 11 },   // amber
+      { r: 16, g: 185, b: 129 },   // emerald
+      { r: 139, g: 92, b: 246 },   // violet
+      { r: 190, g: 55, b: 130 }    // plum
     ];
     const p = ratio * (stops.length - 1);
     const i = Math.floor(p);
@@ -672,10 +672,10 @@
       // Nucleus Solid Core
       bohrCtx.beginPath();
       bohrCtx.arc(centerX, centerY, 13, 0, Math.PI * 2);
-      bohrCtx.fillStyle = '#0284c7';
+      bohrCtx.fillStyle = '#d97706';
       bohrCtx.fill();
       bohrCtx.lineWidth = 1.5;
-      bohrCtx.strokeStyle = '#e0f2fe';
+      bohrCtx.strokeStyle = '#fff7ed';
       bohrCtx.stroke();
 
       // Nucleus Label (Z = protons)
@@ -710,8 +710,8 @@
 
           // Electron Particle Glow
           const eGlow = bohrCtx.createRadialGradient(ex, ey, 1, ex, ey, 6);
-          eGlow.addColorStop(0, '#f472b6');
-          eGlow.addColorStop(1, 'rgba(244, 114, 182, 0)');
+          eGlow.addColorStop(0, '#d9468f');
+          eGlow.addColorStop(1, 'rgba(217, 70, 143, 0)');
           bohrCtx.beginPath();
           bohrCtx.arc(ex, ey, 6, 0, Math.PI * 2);
           bohrCtx.fillStyle = eGlow;
