@@ -385,3 +385,228 @@ body.cosmic-white-theme:before{
 @media(prefers-reduced-motion:reduce){
   body.cosmic-white-theme:before,.glass-header,.element-tile,.element-tile.element-selected,.lab-icon,.day-symbol,.modal-card,.hero-symbol,.lab-action-btn{animation:none!important}
 }
+
+
+/* =========================================================
+   PRISMATIC CHEMISTRY — WARM GLASS / MOTION THEME
+   No blue/black palette: ivory + coral + amber + emerald + plum.
+   ========================================================= */
+:root{
+  --ink:#3d2b2b;
+  --muted:#7d6962;
+  --ivory:#fffaf4;
+  --paper:#fffdf9;
+  --coral:#e45b68;
+  --coral-soft:#ffe5e5;
+  --amber:#f59e0b;
+  --amber-soft:#fff1cf;
+  --emerald:#149b73;
+  --emerald-soft:#dcf8ed;
+  --plum:#9b4d8d;
+  --plum-soft:#f5e4f2;
+  --violet:#7856c9;
+  --violet-soft:#ebe5ff;
+  --line-warm:rgba(126,91,78,.20);
+  --warm-shadow:0 24px 70px rgba(117,73,51,.12),0 7px 22px rgba(117,73,51,.07);
+}
+body.cosmic-white-theme{
+  color:var(--ink)!important;
+  background:
+    radial-gradient(circle at 8% 5%,rgba(245,158,11,.15),transparent 25%),
+    radial-gradient(circle at 92% 8%,rgba(228,91,104,.14),transparent 25%),
+    radial-gradient(circle at 18% 86%,rgba(20,155,115,.10),transparent 24%),
+    radial-gradient(circle at 82% 82%,rgba(155,77,141,.11),transparent 25%),
+    var(--ivory)!important;
+}
+body.cosmic-white-theme:before{
+  opacity:.7;
+  background-image:
+    radial-gradient(circle at 14% 20%,rgba(228,91,104,.20) 0 1.3px,transparent 1.8px),
+    radial-gradient(circle at 74% 17%,rgba(245,158,11,.22) 0 1.3px,transparent 1.8px),
+    radial-gradient(circle at 42% 78%,rgba(20,155,115,.17) 0 1.3px,transparent 1.8px),
+    radial-gradient(circle at 87% 64%,rgba(155,77,141,.16) 0 1.2px,transparent 1.8px);
+  background-size:137px 173px,191px 217px,227px 263px,173px 241px;
+}
+.glass-header,.glass-panel,.glass-footer,.glass-inset,.glass-modal,.toolbar-section,.lab-card,.lab-intro,.heatmap-legend,.intelligence-card,.info-card{
+  background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(255,248,239,.58))!important;
+  border-color:rgba(255,255,255,.94)!important;
+  box-shadow:var(--warm-shadow),inset 0 1px rgba(255,255,255,.98)!important;
+  backdrop-filter:blur(22px) saturate(145%)!important;
+  -webkit-backdrop-filter:blur(22px) saturate(145%)!important;
+}
+.glass-header{
+  border-color:rgba(228,91,104,.16)!important;
+  box-shadow:0 22px 60px rgba(117,73,51,.12),inset 0 1px #fff!important;
+}
+.header-branding .branding-text h1,.gradient-text{color:var(--ink)!important}
+.gradient-text{
+  background:linear-gradient(90deg,var(--coral),var(--amber),var(--emerald),var(--plum))!important;
+  -webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;
+}
+.search-box{
+  border-color:rgba(228,91,104,.18)!important;
+  background:rgba(255,252,247,.78)!important;
+  color:var(--ink)!important;
+  box-shadow:inset 0 1px 6px rgba(117,73,51,.05),0 9px 25px rgba(117,73,51,.07)!important;
+}
+.search-box:focus-within{border-color:rgba(228,91,104,.48)!important;box-shadow:0 0 0 4px rgba(228,91,104,.08),0 12px 28px rgba(117,73,51,.09)!important}
+.search-box input{color:var(--ink)!important}
+.glass-btn,.quick-chip,.temp-preset-btn,.seg-btn,.cat-pill,.lab-secondary-btn,.modal-tab-btn,.nav-element-btn,.close-modal-btn,.intel-link{
+  color:var(--ink)!important;
+  border-color:rgba(126,91,78,.18)!important;
+  background:rgba(255,253,249,.68)!important;
+  box-shadow:0 8px 20px rgba(117,73,51,.07),inset 0 1px rgba(255,255,255,.96)!important;
+}
+.glass-btn:hover,.quick-chip:hover,.temp-preset-btn:hover,.seg-btn:hover,.lab-secondary-btn:hover,.modal-tab-btn:hover,.nav-element-btn:hover,.close-modal-btn:hover,.intel-link:hover{
+  color:var(--coral)!important;
+  border-color:rgba(228,91,104,.40)!important;
+  box-shadow:0 13px 28px rgba(117,73,51,.11),0 0 0 3px rgba(228,91,104,.05)!important;
+}
+
+/* Category controls become a visual chemistry legend */
+.category-pills{gap:8px!important}
+.cat-pill{position:relative;overflow:hidden;transition:.22s cubic-bezier(.2,.9,.2,1)!important}
+.cat-pill:after{
+  content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.58),transparent 70%);
+  transform:translateX(-130%);transition:.45s;pointer-events:none;
+}
+.cat-pill:hover:after,.cat-pill.active:after{transform:translateX(130%)}
+.cat-pill[data-category="all"]{--pill:#b45309}
+.cat-pill[data-category="alkali-metal"]{--pill:#d9485f}
+.cat-pill[data-category="alkaline-earth-metal"]{--pill:#d97706}
+.cat-pill[data-category="transition-metal"]{--pill:#9b4d8d}
+.cat-pill[data-category="post-transition-metal"]{--pill:#a16207}
+.cat-pill[data-category="metalloid"]{--pill:#7856c9}
+.cat-pill[data-category="reactive-nonmetal"]{--pill:#149b73}
+.cat-pill[data-category="noble-gas"]{--pill:#c2417c}
+.cat-pill[data-category="lanthanide"]{--pill:#c26a2b}
+.cat-pill[data-category="actinide"]{--pill:#8b5e3c}
+.cat-pill .cat-dot{background:var(--pill)!important;box-shadow:0 0 10px color-mix(in srgb,var(--pill) 35%,transparent)!important}
+.cat-pill.active{
+  color:var(--pill)!important;
+  border-color:color-mix(in srgb,var(--pill) 48%,white)!important;
+  background:color-mix(in srgb,var(--pill) 10%,white)!important;
+  box-shadow:0 10px 24px color-mix(in srgb,var(--pill) 16%,transparent),inset 0 1px #fff!important;
+  transform:translateY(-2px) scale(1.025);
+}
+
+/* Warm orbital block controls */
+.seg-btn.active{
+  color:#fff!important;
+  border-color:transparent!important;
+  background:linear-gradient(135deg,var(--coral),var(--plum))!important;
+  box-shadow:0 10px 24px rgba(155,77,141,.20)!important;
+}
+.glass-select,.lab-select{
+  color:var(--ink)!important;
+  background:rgba(255,252,247,.86)!important;
+  border-color:rgba(126,91,78,.20)!important;
+}
+.glass-select:focus,.lab-select:focus,.custom-range:focus{outline:none;border-color:rgba(20,155,115,.48)!important;box-shadow:0 0 0 4px rgba(20,155,115,.08)!important}
+.custom-range{accent-color:var(--coral)!important}
+
+/* The table is the visual centre */
+.periodic-grid-container{
+  background:
+    radial-gradient(circle at 15% 15%,rgba(245,158,11,.09),transparent 23%),
+    radial-gradient(circle at 85% 25%,rgba(228,91,104,.08),transparent 24%),
+    radial-gradient(circle at 50% 85%,rgba(20,155,115,.07),transparent 26%),
+    rgba(255,253,249,.64)!important;
+  border-color:rgba(255,255,255,.96)!important;
+  box-shadow:0 30px 90px rgba(117,73,51,.13),inset 0 1px #fff!important;
+}
+.element-tile{
+  background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(255,247,238,.62))!important;
+  border-color:rgba(126,91,78,.17)!important;
+  box-shadow:0 9px 18px rgba(117,73,51,.075),inset 0 1px rgba(255,255,255,.98)!important;
+}
+.element-tile:before{
+  background:radial-gradient(circle,rgba(245,158,11,.36),transparent 68%)!important;
+}
+.element-tile:hover{
+  border-color:rgba(228,91,104,.52)!important;
+  box-shadow:0 22px 42px rgba(117,73,51,.16),0 0 0 3px rgba(228,91,104,.08),inset 0 1px #fff!important;
+}
+.element-tile.cat-alkali-metal:hover{box-shadow:0 0 34px rgba(217,72,95,.28),0 20px 42px rgba(117,73,51,.15)!important}
+.element-tile.cat-alkaline-earth-metal:hover{box-shadow:0 0 34px rgba(217,119,6,.25),0 20px 42px rgba(117,73,51,.15)!important}
+.element-tile.cat-transition-metal:hover{box-shadow:0 0 34px rgba(155,77,141,.27),0 20px 42px rgba(117,73,51,.15)!important}
+.element-tile.cat-post-transition-metal:hover{box-shadow:0 0 34px rgba(161,98,7,.24),0 20px 42px rgba(117,73,51,.15)!important}
+.element-tile.cat-metalloid:hover{box-shadow:0 0 34px rgba(120,86,201,.27),0 20px 42px rgba(117,73,51,.15)!important}
+.element-tile.cat-reactive-nonmetal:hover{box-shadow:0 0 34px rgba(20,155,115,.27),0 20px 42px rgba(117,73,51,.15)!important}
+.element-tile.cat-noble-gas:hover{box-shadow:0 0 34px rgba(194,65,124,.27),0 20px 42px rgba(117,73,51,.15)!important}
+.element-tile.cat-lanthanide:hover{box-shadow:0 0 34px rgba(194,106,43,.25),0 20px 42px rgba(117,73,51,.15)!important}
+.element-tile.cat-actinide:hover{box-shadow:0 0 34px rgba(139,94,60,.25),0 20px 42px rgba(117,73,51,.15)!important}
+.element-tile.element-selected{
+  border-color:var(--coral)!important;
+  box-shadow:0 0 0 6px rgba(228,91,104,.12),0 0 42px rgba(228,91,104,.30),0 26px 50px rgba(155,77,141,.18),inset 0 1px #fff!important;
+}
+.element-tile.element-selected:before{background:radial-gradient(circle,rgba(245,158,11,.60),transparent 68%)!important}
+
+/* Lab and intelligence cards */
+.lab-card:hover{border-color:rgba(228,91,104,.30)!important;box-shadow:0 28px 60px rgba(117,73,51,.14),inset 0 1px #fff!important}
+.lab-icon{background:linear-gradient(135deg,var(--coral-soft),var(--amber-soft),var(--plum-soft))!important;color:var(--plum)!important}
+.day-symbol{
+  background:linear-gradient(145deg,#fff3d6,#ffe1e5 55%,#f3e5f5)!important;
+  color:var(--coral)!important;
+  border-color:rgba(228,91,104,.20)!important;
+  box-shadow:0 16px 34px rgba(117,73,51,.12)!important;
+}
+.lab-action-btn{
+  background:linear-gradient(100deg,var(--coral),var(--amber),var(--emerald),var(--plum),var(--coral))!important;
+  background-size:300% 100%!important;
+  box-shadow:0 14px 32px rgba(155,77,141,.20)!important;
+}
+.lab-action-btn:hover{box-shadow:0 18px 40px rgba(155,77,141,.28)!important}
+.lab-secondary-btn:hover{background:var(--coral-soft)!important}
+.intelligence-card{
+  border-color:rgba(155,77,141,.22)!important;
+  box-shadow:0 22px 58px rgba(117,73,51,.12),inset 0 1px #fff!important;
+}
+.intelligence-card:before{border-color:rgba(228,91,104,.18)!important;box-shadow:0 0 80px rgba(245,158,11,.12)!important}
+.intel-kicker{color:var(--plum)!important}
+.intel-confidence{background:var(--emerald-soft)!important;color:#087653!important;border-color:rgba(20,155,115,.22)!important}
+.intel-stat:hover,.intel-panel:hover{box-shadow:0 14px 28px rgba(117,73,51,.10)!important}
+.intel-callout{border-left-color:var(--coral)!important;background:linear-gradient(90deg,var(--coral-soft),rgba(255,255,255,.72))!important}
+.intel-shell-bar{background:linear-gradient(180deg,var(--amber),var(--coral),var(--plum))!important}
+.intel-link:hover{color:var(--plum)!important}
+
+/* Modal becomes a warm translucent stage */
+.modal-backdrop{background:rgba(92,57,47,.18)!important;backdrop-filter:blur(12px)!important}
+.modal-card{
+  background:rgba(255,252,247,.78)!important;
+  border-color:rgba(255,255,255,.96)!important;
+  box-shadow:0 38px 110px rgba(92,57,47,.24),0 0 90px rgba(228,91,104,.10),inset 0 1px #fff!important;
+}
+.modal-topbar{background:rgba(255,250,244,.68)!important}
+.element-hero-badge{background:linear-gradient(145deg,rgba(255,240,222,.90),rgba(255,226,232,.68),rgba(244,233,249,.66))!important}
+.hero-symbol{color:var(--coral)!important;text-shadow:0 0 22px rgba(228,91,104,.20)!important}
+.modal-tab-btn.active{
+  color:var(--plum)!important;
+  background:linear-gradient(135deg,var(--coral-soft),var(--amber-soft),var(--plum-soft))!important;
+  border-color:rgba(155,77,141,.32)!important;
+  box-shadow:0 8px 20px rgba(155,77,141,.12)!important;
+}
+.card-icon{color:var(--coral)!important}
+.data-value.highlight{color:var(--emerald)!important}
+.nav-element-btn:hover{color:var(--plum)!important}
+
+/* Heatmap legend / state badges */
+.heatmap-bar-gradient{background:linear-gradient(90deg,var(--coral),var(--amber),var(--emerald),var(--violet),var(--plum))!important}
+.state-pill{border-color:rgba(126,91,78,.16)!important}
+.state-solid .state-dot{background:#a88978!important}
+.state-liquid .state-dot{background:var(--emerald)!important}
+.state-gas .state-dot{background:var(--coral)!important}
+.state-unknown .state-dot{background:var(--plum)!important}
+
+/* Series placeholders and search highlights */
+.series-range{color:var(--coral)!important}
+.series-placeholder-tile:hover{border-color:rgba(228,91,104,.42)!important;background:var(--coral-soft)!important}
+.element-tile.highlighted{outline:3px solid rgba(228,91,104,.42)!important;box-shadow:0 0 0 5px rgba(228,91,104,.08)!important}
+.element-tile.dimmed{opacity:.13;filter:saturate(.35) grayscale(.30)}
+.clear-btn{color:var(--coral)!important}
+
+/* More obvious button feedback */
+button{font-family:inherit}
+button:not(:disabled){cursor:pointer}
+button:not(:disabled):active{transform:translateY(1px) scale(.98)!important}
+button:disabled{cursor:not-allowed;opacity:.52}
